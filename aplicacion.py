@@ -19,14 +19,9 @@ Jugador: {COLORES['AMARILLO']}{configuracion['nombre_jugador']}{COLORES['RESET']
 2. Opciones
 3. Salir""")
         
-        try:
-            opcion = int(input("\nElige una opcion: "))
-        except:
-            print("\nEso no es un numero valido.")
-            time.sleep(1)
-            continue
+        opcion = input("\nElige una opcion: ")
             
-        if opcion == 1:
+        if opcion == "1":
             limpiar_pantalla()
             print(f"""
 {COLORES['VERDE']}=== ELEGIR NIVEL ==={COLORES['RESET']}
@@ -36,17 +31,12 @@ Jugador: {COLORES['AMARILLO']}{configuracion['nombre_jugador']}{COLORES['RESET']
 3. Dificil
 4. Regresar""")
             
-            try:
-                nivel = int(input("\nCual nivel quieres? "))
-            except:
-                print("\nOpcion no valida.")
-                time.sleep(1)
+            nivel = input("\nCual nivel quieres? ")
+                
+            if nivel == "4":
                 continue
                 
-            if nivel == 4:
-                continue
-                
-            if nivel < 1 or nivel > 3:
+            if nivel != "1" and nivel != "2" and nivel != "3":
                 print("\nEse nivel no existe.")
                 time.sleep(1)
                 continue
@@ -54,9 +44,9 @@ Jugador: {COLORES['AMARILLO']}{configuracion['nombre_jugador']}{COLORES['RESET']
             limpiar_pantalla()
             print(f"Empezando nivel {nivel}...")
             time.sleep(1)
-            iniciar_juego(nivel)
+            iniciar_juego(int(nivel))
             
-        elif opcion == 2:
+        elif opcion == "2":
             while True:
                 limpiar_pantalla()
                 print(f"""
@@ -66,58 +56,57 @@ Jugador: {COLORES['AMARILLO']}{configuracion['nombre_jugador']}{COLORES['RESET']
 2. Cambiar color de serpiente
 3. Regresar""")
                 
-                try:
-                    opcion2 = int(input("\nElige: "))
-                except:
-                    continue
+                opcion2 = input("\nElige: ")
 
-                if opcion2 == 1:
+                if opcion2 == "1":
                     limpiar_pantalla()
                     print(f"Volumen actual: {configuracion['volumen']}")
                     print("1. Subir")
                     print("2. Bajar")
                     
-                    try:
-                        vol = int(input("Opcion: "))
-                        if vol == 1:
-                            nuevo = configuracion["volumen"] + 10
-                            if nuevo > 100:
-                                nuevo = 100
-                            configuracion["volumen"] = nuevo
-                            print("Volumen subido.")
-                        elif vol == 2:
-                            nuevo = configuracion["volumen"] - 10
-                            if nuevo < 0:
-                                nuevo = 0
-                            configuracion["volumen"] = nuevo
-                            print("Volumen bajado.")
-                        time.sleep(1)
-                    except:
-                        pass
+                    vol = input("Opcion: ")
+                    if vol == "1":
+                        nuevo = configuracion["volumen"] + 10
+                        if nuevo > 100:
+                            nuevo = 100
+                        configuracion["volumen"] = nuevo
+                        print("Volumen subido.")
+                    elif vol == "2":
+                        nuevo = configuracion["volumen"] - 10
+                        if nuevo < 0:
+                            nuevo = 0
+                        configuracion["volumen"] = nuevo
+                        print("Volumen bajado.")
+                    time.sleep(1)
                         
-                elif opcion2 == 2:
+                elif opcion2 == "2":
                     limpiar_pantalla()
                     print("Colores disponibles:")
                     print("1. Verde")
                     print("2. Azul")
                     print("3. Rojo")
                     
-                    try:
-                        col = int(input("Cual color? "))
-                        if col == 1:
-                            configuracion["color_serpiente"] = COLORES["VERDE"]
-                        elif col == 2:
-                            configuracion["color_serpiente"] = COLORES["AZUL"]
-                        elif col == 3:
-                            configuracion["color_serpiente"] = COLORES["ROJO"]
-                        print("Color cambiado.")
-                        time.sleep(1)
-                    except:
-                        pass
+                    col = input("Cual color? ")
+                    if col == "1":
+                        configuracion["color_serpiente"] = COLORES["VERDE"]
+                    elif col == "2":
+                        configuracion["color_serpiente"] = COLORES["AZUL"]
+                    elif col == "3":
+                        configuracion["color_serpiente"] = COLORES["ROJO"]
+                    print("Color cambiado.")
+                    time.sleep(1)
                 
-                elif opcion2 == 3:
+                elif opcion2 == "3":
                     break
                     
-        elif opcion == 3:
-            print("\nAdios!")
-            break
+        elif opcion == "3":
+            print("\nSeguro que quieres salir?\n")
+            print("1. Si")
+            print("2. No")
+            salir = input("\nElige una opcion: \n")
+            if salir == "1":
+                print("\nAdios!")
+                break
+            else: 
+                continue
+            
