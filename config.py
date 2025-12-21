@@ -11,19 +11,19 @@ COLORES = {
     "AMARILLO": "\033[93m",
 }
 
-# Configuracion del juego
-configuracion = {
-    "color_serpiente": COLORES["VERDE"],
-    "volumen": 50,
-    "nombre_jugador": "",
-}
-
 def limpiar_pantalla():
     # Si es Windows usa cls, si no clear
     if os.name == "nt":
         os.system("cls")
     else:
         os.system("clear")
+
+# Configuracion del juego
+configuracion = {
+    "color_serpiente": COLORES["VERDE"],
+    "volumen": 50,
+    "nombre_jugador": "",
+}
 
 def leer_tecla():
     # Solo funciona en Windows
